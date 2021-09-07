@@ -35,9 +35,9 @@ QProcess *process;
 bool expertMode = false;
 
 #ifdef Q_OS_LINUX
-QString commandToRun = "run.sh";
+QString commandToRun = "scripts/run.sh";
 #elif defined(Q_OS_WINDOWS)
-QString commandToRun = "wsl \"./run.sh\"";
+QString commandToRun = "wsl \"/scripts/run.sh\"";
 #endif
 
 
