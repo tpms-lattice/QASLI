@@ -447,7 +447,7 @@ void MainWindow::writeConfigFile()
 
     // Mesh settings
     string mesher = ui->mesherCombo->currentText().toUtf8().toUpper().constData();
-    bool volumeMesh = FALSE;
+    bool volumeMesh = false;
     int nThreads = 0;
 
     // Mesh settings (MMG)
@@ -464,7 +464,7 @@ void MainWindow::writeConfigFile()
     float meshFacetDistance = ui->facetDistanceSpinBox->value();
     float meshCellRadiusEdgeRatio = 0;
     float meshCellSize = 0;
-    bool meshPreserveEdges = TRUE;
+    bool meshPreserveEdges = true;
     float meshPoissonOffset = 0;
 
 
@@ -577,5 +577,3 @@ void MainWindow::displayMessage(QString msg, bool isError)
         ui->textOutput->setTextColor(QColor("black"));
     ui->textOutput->append(msg);
 }
-
-
