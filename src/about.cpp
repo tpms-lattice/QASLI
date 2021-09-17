@@ -6,6 +6,12 @@ About::About(QWidget *parent) :
     ui(new Ui::About)
 {
     ui->setupUi(this);
+
+    QString buildDate = __DATE__;
+    QString buildTime = __TIME__;
+    ui->buildTimeLabel->setText(QString("Built on %1 %2").arg(buildDate).arg(buildTime));
+
+    ui->qtVersionLabel->setText(QString("Based on Qt %1").arg(QT_VERSION_STR));
 }
 
 About::~About()
