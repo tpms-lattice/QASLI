@@ -325,6 +325,7 @@ void MainWindow::renderFile(QString fileName)
     currentFilePath = fileName.toUtf8().constData();
     Qt3DCore::QEntity *rootEntity = new Qt3DCore::QEntity;
     Qt3DCore::QEntity *viewer = new Qt3DCore::QEntity(rootEntity);
+    view->setRootEntity(rootEntity);
 
     //Qt3DExtras::QMetalRoughMaterial *material = new Qt3DExtras::QMetalRoughMaterial();
     //material->setMetalness(0.361);
@@ -342,9 +343,7 @@ void MainWindow::renderFile(QString fileName)
 
     Qt3DRender::QCamera *camera = view->camera();
     camera->lens()->setPerspectiveProjection(45.0f, 16.0f/9.0f, 0.1f, 1000.0f);
-    camera->setPosition(QVector3D(0, 0, 40.0f));
-    camera->setPosition(QVector3D(0, 0, 40.0f));
-
+    camera->setPosition(QVector3D(45.0f, 45.0f, 45.0f));
     camera->setViewCenter(QVector3D(0, 0, 0));
 
     Qt3DCore::QEntity *lightEntity = new Qt3DCore::QEntity(camera);
@@ -360,8 +359,10 @@ void MainWindow::renderFile(QString fileName)
     Qt3DExtras::QOrbitCameraController *camController = new Qt3DExtras::QOrbitCameraController(rootEntity);
     camController->setCamera(camera);
 
-    view->setRootEntity(rootEntity);
     displayMessage("STL file loaded!", false);
+
+    qApp->processEvents();
+    view->camera()->viewAll();
 }
 
 void MainWindow::writeConfigFile()
