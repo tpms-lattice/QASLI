@@ -420,7 +420,7 @@ void MainWindow::writeConfigFile()
     switch(ui->featureCombo->currentIndex())
     {
         case 0:
-            latticeFeature = "level";
+            latticeFeature = "isovalue";
             break;
         case 1:
             latticeFeature = "volumeFraction";

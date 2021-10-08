@@ -32,7 +32,7 @@
      <x>0</x>
      <y>0</y>
      <width>1134</width>
-     <height>25</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -559,7 +559,7 @@
                 </property>
                 <item>
                  <property name="text">
-                  <string>Level (normalized)</string>
+                  <string>Isovalue (normalized)</string>
                  </property>
                 </item>
                 <item>
