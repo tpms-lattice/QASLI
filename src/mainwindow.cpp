@@ -448,6 +448,11 @@ void MainWindow::writeConfigFile()
 
     // Mesh settings
     string mesher = ui->mesherCombo->currentText().toUtf8().toUpper().constData();
+    string outputType = "both";
+    if (ui->outputTypeCombo->currentIndex() == 1)
+        outputType = "scaffold";
+    else if (ui->outputTypeCombo->currentIndex() == 2)
+        outputType = "void";
     bool volumeMesh = false;
     int nThreads = 0;
 
@@ -493,6 +498,7 @@ void MainWindow::writeConfigFile()
     file << "mp_C1: " << mpC1 << endl;
     file << "mp_n1: " << mpn1 << endl;
     file << "me_mesher: " << mesher << endl;
+    file << "me_side: " << outputType << endl;
     file << "me_volumeMesh: " << volumeMesh << endl;
     file << "n_threads: " << nThreads << endl;
     file << "me_hvol: " << meshHvol << endl;
