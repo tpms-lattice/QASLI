@@ -77,6 +77,8 @@ MainWindow::MainWindow(QWidget *parent) :
     #endif
 
     new QShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_E), this, SLOT(toggleExpertMode()));
+    ui->outputTypeCombo->setVisible(false);
+    ui->outputTypeLabel->setVisible(false);
 
     displayMessage("Welcome to QASLI, the graphical interface of ASLI!", false);
 }
@@ -567,6 +569,10 @@ void MainWindow::checkWSL()
 void MainWindow::toggleExpertMode()
 {
     expertMode = !expertMode;
+
+    ui->outputTypeCombo->setVisible(expertMode);
+    ui->outputTypeLabel->setVisible(expertMode);
+
     QMessageBox qmb;
     if (expertMode)
         qmb.setText("Expert Mode enabled.");
