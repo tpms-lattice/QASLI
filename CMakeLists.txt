@@ -51,3 +51,6 @@ target_link_libraries(QASLI PUBLIC
     Qt::Widgets
     Qt::Xml
 )
+
+install(TARGETS QASLI 
+		RUNTIME DESTINATION "${CMAKE_INSTALL_PREFIX}")
