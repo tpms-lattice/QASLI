@@ -31,6 +31,7 @@ add_executable(QASLI WIN32 MACOSX_BUNDLE
     src/about.cpp src/about.h
     src/main.cpp
     src/mainwindow.cpp src/mainwindow.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/icon.rc
 )
 
 target_include_directories(QASLI PUBLIC
@@ -53,4 +54,4 @@ target_link_libraries(QASLI PUBLIC
 )
 
 install(TARGETS QASLI 
-		RUNTIME DESTINATION "${CMAKE_INSTALL_PREFIX}")
+    RUNTIME DESTINATION "${CMAKE_INSTALL_PREFIX}")
