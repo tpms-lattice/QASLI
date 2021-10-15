@@ -37,7 +37,7 @@ bool expertMode = false;
 #ifdef Q_OS_LINUX
 QString commandToRun = "scripts/run.sh";
 #elif defined(Q_OS_WINDOWS)
-QString commandToRun = "wsl \"/scripts/run.sh\"";
+QString commandToRun = "wsl \"scripts/run.sh\"";
 #endif
 
 
