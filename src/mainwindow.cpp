@@ -440,8 +440,11 @@ void MainWindow::writeConfigFile()
     else
         latticeFeatureValue = 0;
 
+    string latticeFeatureMode;
+    latticeFeatureMode = "relative";
+
     // Material properties
-    string mpModel = "test";
+    string mpModel = "gibson_ashby";
     float mpSolid = 0;
     float mpC = 0;
     float mpn = 0;
@@ -450,13 +453,13 @@ void MainWindow::writeConfigFile()
 
     // Mesh settings
     string mesher = ui->mesherCombo->currentText().toUtf8().toUpper().constData();
-    string outputType = "both";
+    string outputType = "scaffold";
     if (ui->outputTypeCombo->currentIndex() == 1)
         outputType = "scaffold";
     else if (ui->outputTypeCombo->currentIndex() == 2)
         outputType = "void";
-    bool volumeMesh = false;
-    int nThreads = 0;
+    string volumeMesh = "FALSE";
+    int nThreads = 1;
 
     // Mesh settings (MMG)
     float meshHvol = 0;
@@ -472,10 +475,8 @@ void MainWindow::writeConfigFile()
     float meshFacetDistance = ui->facetDistanceSpinBox->value();
     float meshCellRadiusEdgeRatio = 0;
     float meshCellSize = 0;
-    bool meshPreserveEdges = true;
+    string meshPreserveEdges = "TRUE";
     float meshPoissonOffset = 0;
-
-
 
     // Output settings
     ofstream file;
@@ -493,6 +494,7 @@ void MainWindow::writeConfigFile()
     file << "lt_size: " << latticeSize << endl;
     file << "lt_feature: " << latticeFeature << endl;
     file << "lt_feature_val: " << latticeFeatureValue << endl;
+    file << "lt_feature_mode: " << latticeFeatureMode << endl;
     file << "mp_materialModel: " << mpModel << endl;
     file << "mp_solid: " << mpSolid << endl;
     file << "mp_C: " << mpC << endl;
@@ -502,7 +504,7 @@ void MainWindow::writeConfigFile()
     file << "me_mesher: " << mesher << endl;
     file << "me_side: " << outputType << endl;
     file << "me_volumeMesh: " << volumeMesh << endl;
-    file << "n_threads: " << nThreads << endl;
+    file << "me_nThreads: " << nThreads << endl;
     file << "me_hvol: " << meshHvol << endl;
     file << "me_hinitial: " << meshHinitial << endl;
     file << "me_hmin: " << meshHmin << endl;
