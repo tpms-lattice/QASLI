@@ -77,8 +77,9 @@ MainWindow::MainWindow(QWidget *parent) :
     #endif
 
     new QShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_E), this, SLOT(toggleExpertMode()));
-    ui->outputTypeCombo->setVisible(false);
-    ui->outputTypeLabel->setVisible(false);
+    ui->outputSideCombo->setVisible(false);
+    ui->outputSideLabel->setVisible(false);
+    ui->outputTypeGroup->setVisible(false);
     ui->filterRadiusLabel->setVisible(false);
     ui->filterRadiusSpinBox->setVisible(false);
     ui->correctionFactorLabel->setVisible(false);
@@ -476,11 +477,13 @@ void MainWindow::writeConfigFile()
     // Mesh settings
     string mesher = ui->mesherCombo->currentText().toUtf8().toUpper().constData();
     string outputType = "scaffold";
-    if (ui->outputTypeCombo->currentIndex() == 1)
+    if (ui->outputSideCombo->currentIndex() == 1)
         outputType = "scaffold";
-    else if (ui->outputTypeCombo->currentIndex() == 2)
+    else if (ui->outputSideCombo->currentIndex() == 2)
         outputType = "void";
     string volumeMesh = "FALSE";
+    if (ui->outputVolumeRadio->isChecked())
+        volumeMesh = "TRUE";
     int nThreads = 1;
 
     // Mesh settings (MMG)
@@ -594,8 +597,9 @@ void MainWindow::toggleExpertMode()
 {
     expertMode = !expertMode;
 
-    ui->outputTypeCombo->setVisible(expertMode);
-    ui->outputTypeLabel->setVisible(expertMode);
+    ui->outputSideCombo->setVisible(expertMode);
+    ui->outputSideLabel->setVisible(expertMode);
+    ui->outputTypeGroup->setVisible(expertMode);
 
     on_cellTypeCombo_currentIndexChanged(ui->cellTypeCombo->currentIndex());
 
