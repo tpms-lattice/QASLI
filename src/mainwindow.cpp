@@ -79,9 +79,13 @@ MainWindow::MainWindow(QWidget *parent) :
     new QShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_E), this, SLOT(toggleExpertMode()));
     ui->outputTypeCombo->setVisible(false);
     ui->outputTypeLabel->setVisible(false);
+    ui->filterRadiusLabel->setVisible(false);
+    ui->filterRadiusSpinBox->setVisible(false);
+    ui->correctionFactorLabel->setVisible(false);
+    ui->correctionFactorSpinBox->setVisible(false);
 
     ui->tabWidget->setTabVisible(3, false);
-    ui->dockTools->setMinimumSize(200, 200); // force Qt to recalculate the minimum size
+    ui->dockTools->setMinimumSize(200, 200); // force Qt to recalculate the minimum size constraint
 
     displayMessage("Welcome to QASLI, the graphical interface of ASLI!", false);
 }
@@ -183,6 +187,13 @@ void MainWindow::on_cellTypeCombo_currentIndexChanged(int index)
     ui->unitCellLineEdit->setEnabled(enabled);
     ui->browseUnitCellButton->setEnabled(enabled);
     ui->label_2->setEnabled(enabled);
+
+    if (!expertMode)
+        enabled = false;
+    ui->filterRadiusLabel->setVisible(enabled);
+    ui->filterRadiusSpinBox->setVisible(enabled);
+    ui->correctionFactorLabel->setVisible(enabled);
+    ui->correctionFactorSpinBox->setVisible(enabled);
 }
 
 void MainWindow::on_browseUnitCellButton_clicked()
@@ -418,8 +429,8 @@ void MainWindow::writeConfigFile()
             latticeType = "hybrid";
             break;
     }
-    float latticeRadius = 1;
-    float latticeCorrectionFactor = 0.1;
+    float latticeRadius = ui->filterRadiusSpinBox->value();
+    float latticeCorrectionFactor = ui->correctionFactorSpinBox->value();
     float latticeSize;
     if (ui->cellSizeCombo->currentIndex() == 0)
         latticeSize = ui->cellSizeSpinBox->value();
@@ -585,6 +596,8 @@ void MainWindow::toggleExpertMode()
 
     ui->outputTypeCombo->setVisible(expertMode);
     ui->outputTypeLabel->setVisible(expertMode);
+
+    on_cellTypeCombo_currentIndexChanged(ui->cellTypeCombo->currentIndex());
 
     QMessageBox qmb;
     if (expertMode)
