@@ -234,16 +234,21 @@ void MainWindow::on_browseCellSizeButton_clicked()
 
 void MainWindow::on_featureCombo_currentIndexChanged(int index)
 {
+    bool showMode;
     if (index == 0 || index == 1)
     {
         ui->featureSizeLabel->setText("Feature ([0, 1])");
         ui->featureSizeSpinBox->setMaximum(1.0);
+        showMode = false;
     }
     else
     {
         ui->featureSizeLabel->setText("Feature ([0, 1000])");
         ui->featureSizeSpinBox->setMaximum(1000.0);
+        showMode = true;
     }
+    ui->featureModeCombo->setVisible(showMode);
+    ui->featureModeLabel->setVisible(showMode);
 }
 
 void MainWindow::on_featureInputCombo_currentIndexChanged(int index)
@@ -441,7 +446,10 @@ void MainWindow::writeConfigFile()
         latticeFeatureValue = 0;
 
     string latticeFeatureMode;
-    latticeFeatureMode = "relative";
+    if (ui->featureModeCombo->currentIndex() == 0)
+        latticeFeatureMode = "relative";
+    else
+        latticeFeatureMode = "absolute";
 
     // Material properties
     string mpModel = "gibson_ashby";
