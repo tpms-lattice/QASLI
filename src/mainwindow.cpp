@@ -80,6 +80,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->outputTypeCombo->setVisible(false);
     ui->outputTypeLabel->setVisible(false);
 
+    ui->tabWidget->setTabVisible(3, false);
+    ui->dockTools->setMinimumSize(200, 200); // force Qt to recalculate the minimum size
+
     displayMessage("Welcome to QASLI, the graphical interface of ASLI!", false);
 }
 
