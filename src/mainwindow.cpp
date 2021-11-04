@@ -282,11 +282,11 @@ void MainWindow::on_outputCheckBox_stateChanged(int arg1)
 
 void MainWindow::on_outputbrowseButton_clicked()
 {
-    QFileDialog dialog;
-    dialog.setFileMode(QFileDialog::DirectoryOnly);
-    dialog.setOption(QFileDialog::ShowDirsOnly, false);
-    dialog.exec();
-    QString s = dialog.directory().absolutePath();
+    QFileDialog* qfd = new QFileDialog(this, "Select Output Directory", "", "");
+    qfd->setFileMode(QFileDialog::Directory);
+    qfd->setOption(QFileDialog::ShowDirsOnly, true);
+    QString s = qfd->getExistingDirectory(this, "Select Output Directory", "");
+    delete qfd;
 
     if (s.toStdString().empty())
         return;
