@@ -227,11 +227,15 @@ void MainWindow::on_mesherCombo_currentIndexChanged(int index)
     {
         ui->groupBoxCGAL->setEnabled(true);
         ui->groupBoxMMG->setEnabled(false);
+        if (ui->outputSideCombo->count() == 3)
+            ui->outputSideCombo->removeItem(2);
     }
     else
     {
         ui->groupBoxCGAL->setEnabled(false);
         ui->groupBoxMMG->setEnabled(true);
+        if (ui->outputSideCombo->count() == 2)
+            ui->outputSideCombo->addItem("Both");
     }
 }
 
@@ -476,11 +480,13 @@ void MainWindow::writeConfigFile()
 
     // Mesh settings
     string mesher = ui->mesherCombo->currentText().toUtf8().toUpper().constData();
-    string outputType = "scaffold";
-    if (ui->outputSideCombo->currentIndex() == 1)
+    string outputType;
+    if (ui->outputSideCombo->currentIndex() == 0)
         outputType = "scaffold";
-    else if (ui->outputSideCombo->currentIndex() == 2)
+    else if (ui->outputSideCombo->currentIndex() == 1)
         outputType = "void";
+    else
+        outputType = "both";
     string volumeMesh = "FALSE";
     if (ui->outputVolumeRadio->isChecked())
         volumeMesh = "TRUE";

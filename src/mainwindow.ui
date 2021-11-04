@@ -953,17 +953,17 @@
                 </property>
                 <item>
                  <property name="text">
-                  <string>Both</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
                   <string>Scaffold</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
                   <string>Void</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Both</string>
                  </property>
                 </item>
                </widget>
