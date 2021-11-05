@@ -68,7 +68,9 @@ std::string convertPath(std::string file_path)
 #ifdef Q_OS_LINUX
     return file_path;
 #else
-    return windows_to_unix_file_path(std::move(file_path), true);
+    // return windows_to_unix_file_path(std::move(file_path), true);
+    // now with a native version of ASLI for Windows, no path rewriting is required
+    return file_path;
 #endif
 }
 

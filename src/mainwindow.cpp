@@ -1,3 +1,4 @@
+#include "global.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "about.h"
@@ -33,13 +34,6 @@ using namespace std;
 string currentFilePath;
 QProcess *process;
 bool expertMode = false;
-
-#ifdef Q_OS_LINUX
-QString commandToRun = "scripts/run.sh";
-#elif defined(Q_OS_WINDOWS)
-//QString commandToRun = "wsl \"scripts/run.sh\"";
-QString commandToRun = "scripts\run.cmd";
-#endif
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -329,10 +323,13 @@ void MainWindow::on_runButton_clicked()
     }
     writeConfigFile();
     process = new QProcess(this);
-    QString program = commandToRun;
+    QString dir = WORKING_DIR;
+    QString program = COMMAND_TO_RUN;
+    program = dir + program;
     connect(process, SIGNAL(readyReadStandardOutput()), this, SLOT(readOutput()));
     connect(process, SIGNAL(readyReadStandardError()), this, SLOT(readError()));
     connect(process, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(processFinished(int,QProcess::ExitStatus)));
+    process->setWorkingDirectory(dir);
     process->start(program);
     ui->runButton->setEnabled(false);
     ui->stopButton->setEnabled(true);
@@ -511,7 +508,8 @@ void MainWindow::writeConfigFile()
 
     // Output settings
     ofstream file;
-    file.open("config.yml");
+    string dir = WORKING_DIR;
+    file.open(dir + "config.yml");
 
     file << "files:" << endl;
     file << "  stl: " << inputFile << endl;

@@ -25,6 +25,7 @@ find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 
 add_executable(QASLI WIN32 MACOSX_BUNDLE
+    src/global.h
     src/about.ui
     src/mainwindow.ui
     src/FileSystemPathUtils.cpp src/FileSystemPathUtils.h
