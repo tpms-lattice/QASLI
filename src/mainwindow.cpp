@@ -300,7 +300,7 @@ void MainWindow::on_outputCheckBox_stateChanged(int arg1)
     if (arg1)
         enabled = false;
     ui->label_8->setEnabled(enabled);
-    ui->outputLineEdit->setEnabled(enabled);
+//    ui->outputLineEdit->setEnabled(enabled);
     ui->outputbrowseButton->setEnabled(enabled);
 }
 

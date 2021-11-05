@@ -1293,6 +1293,9 @@
            </item>
            <item>
             <widget class="QLineEdit" name="outputLineEdit">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="toolTip">
               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
