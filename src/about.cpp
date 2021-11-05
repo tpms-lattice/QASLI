@@ -13,7 +13,8 @@ About::About(QWidget *parent) :
 
     ui->qtVersionLabel->setText(QString("Based on Qt %1").arg(QT_VERSION_STR));
 
-    this->setFixedSize(this->size());
+//    this->setFixedSize(this->size());
+    layout()->setSizeConstraint(QLayout::SetFixedSize);
 }
 
 About::~About()
