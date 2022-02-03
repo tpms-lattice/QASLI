@@ -43,16 +43,14 @@ target_compile_definitions(QASLI PUBLIC
     APP_VERSION=\\\"0.1\\\"
 )
 
-target_link_libraries(QASLI PUBLIC
-    Qt::3DCore
-    Qt::3DExtras
-    Qt::3DInput
-    Qt::3DRender
-    Qt::Core
-    Qt::Gui
-    Qt::Widgets
-    Qt::Xml
-)
+target_link_libraries(QASLI PRIVATE Qt${QT_VERSION_MAJOR}::3DCore)
+target_link_libraries(QASLI PRIVATE Qt${QT_VERSION_MAJOR}::3DExtras)
+target_link_libraries(QASLI PRIVATE Qt${QT_VERSION_MAJOR}::3DInput)
+target_link_libraries(QASLI PRIVATE Qt${QT_VERSION_MAJOR}::3DRender)
+target_link_libraries(QASLI PRIVATE Qt${QT_VERSION_MAJOR}::Core)
+target_link_libraries(QASLI PRIVATE Qt${QT_VERSION_MAJOR}::Gui)
+target_link_libraries(QASLI PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(QASLI PRIVATE Qt${QT_VERSION_MAJOR}::Xml)
 
-install(TARGETS QASLI 
+install(TARGETS QASLI
     RUNTIME DESTINATION "${CMAKE_INSTALL_PREFIX}")
