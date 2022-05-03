@@ -67,7 +67,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     #ifdef Q_OS_WINDOWS
     ui->textOutput->setFontFamily("Consolas");
-    checkWSL();
+//    checkWSL();
     #endif
 
     new QShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_E), this, SLOT(toggleExpertMode()));
