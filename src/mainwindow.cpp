@@ -70,7 +70,12 @@ MainWindow::MainWindow(QWidget *parent) :
 //    checkWSL();
     #endif
 
+
+    #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     new QShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_E), this, SLOT(toggleExpertMode()));
+    #else
+    new QShortcut(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_E), this, SLOT(toggleExpertMode()));
+    #endif
     ui->outputSideCombo->setVisible(false);
     ui->outputSideLabel->setVisible(false);
     ui->outputTypeGroup->setVisible(false);
