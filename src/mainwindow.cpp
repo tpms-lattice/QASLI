@@ -224,17 +224,17 @@ void MainWindow::on_mesherCombo_currentIndexChanged(int index)
 {
     if (index == 1)
     {
-        ui->groupBoxCGAL->setEnabled(true);
-        ui->groupBoxMMG->setEnabled(false);
-        if (ui->outputSideCombo->count() == 3)
-            ui->outputSideCombo->removeItem(2);
-    }
-    else
-    {
         ui->groupBoxCGAL->setEnabled(false);
         ui->groupBoxMMG->setEnabled(true);
         if (ui->outputSideCombo->count() == 2)
             ui->outputSideCombo->addItem("Both");
+    }
+    else
+    {
+        ui->groupBoxCGAL->setEnabled(true);
+        ui->groupBoxMMG->setEnabled(false);
+        if (ui->outputSideCombo->count() == 3)
+            ui->outputSideCombo->removeItem(2);
     }
 }
 
