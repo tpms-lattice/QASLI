@@ -472,13 +472,13 @@ void MainWindow::writeConfigFile()
     else
         latticeFeatureMode = "absolute";
 
-    // Material properties
-    string mpModel = "gibson_ashby";
-    float mpSolid = 0;
-    float mpC = 0;
-    float mpn = 0;
-    float mpC1 = 0;
-    float mpn1 = 0;
+    // User defined feature settings
+    string udfUserDefinedFeature = "elasticModulus";
+    float udfA = 110000;
+    float udfB = 1;
+    float udfC = 2;
+    float udfD = 0;
+    float udfE = 0;
 
     // Mesh settings
     string mesher = ui->mesherCombo->currentText().toUtf8().toUpper().constData();
@@ -529,12 +529,12 @@ void MainWindow::writeConfigFile()
     file << "lt_feature: " << latticeFeature << endl;
     file << "lt_feature_val: " << latticeFeatureValue << endl;
     file << "lt_feature_mode: " << latticeFeatureMode << endl;
-    file << "mp_materialModel: " << mpModel << endl;
-    file << "mp_solid: " << mpSolid << endl;
-    file << "mp_C: " << mpC << endl;
-    file << "mp_n: " << mpn << endl;
-    file << "mp_C1: " << mpC1 << endl;
-    file << "mp_n1: " << mpn1 << endl;
+    file << "udf_userDefinedFeature: " << udfUserDefinedFeature << endl;
+    file << "udf_A: " << udfA << endl;
+    file << "udf_B: " << udfB << endl;
+    file << "udf_C: " << udfC << endl;
+    file << "udf_D: " << udfD << endl;
+    file << "udf_E: " << udfE << endl;
     file << "me_mesher: " << mesher << endl;
     file << "me_side: " << outputType << endl;
     file << "me_volumeMesh: " << volumeMesh << endl;
